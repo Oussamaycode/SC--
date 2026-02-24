@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Colocation;
 use App\Http\Requests\StoreColocationRequest;
-use App\Http\Requests\UpdateColocationRequest;
+use Illuminate\Support\Facades\Gate;
 
 class ColocationController extends Controller
 {
@@ -13,7 +13,7 @@ class ColocationController extends Controller
      */
     public function index()
     {
-
+        return view('colocation');
     }
 
     /**
@@ -21,7 +21,9 @@ class ColocationController extends Controller
      */
     public function create()
     {
-        
+        Gate::authorize('create-colocation');
+        $user=Auth::user();
+        return index();
     }
 
     /**

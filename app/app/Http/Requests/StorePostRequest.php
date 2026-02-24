@@ -11,7 +11,7 @@ class StorePostRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        Gate::allows('create-colocation');
     }
 
     /**
@@ -22,7 +22,7 @@ class StorePostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+        'name'=>'required|'
         ];
     }
 }

@@ -24,7 +24,7 @@ class AuthServiceProvider extends ServiceProvider
             return $user->role==="admin";
         });
         Gate::define('create-colocation',function($user){
-            return $user->colocation_id==null;
+            return !$user->memberships()->exists();
         });
     }
 }
