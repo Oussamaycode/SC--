@@ -6,9 +6,8 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+    protected $fillable=['nom','email','password'];
+
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
@@ -17,6 +16,9 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('image');
+            $table->integer('reputation')->default(0)->unsigned();
+            $table->foreignId('colocation_id')->constrained()->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
