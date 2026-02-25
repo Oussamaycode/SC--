@@ -18,6 +18,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::post('/dashboard',[ColocationController::class,'store'])->name('colocation.store');
     Route::get('/colocation',[ColocationController::class,'index'])->name('colocation.index');
+    Route::get('/join',[ColocationController::class,'join'])->name('colocation.join.show');
+    Route::post('/join',[ColocationController::class,'joinColocation'])->name('colocation.join');
 });
 
 require __DIR__.'/auth.php';
