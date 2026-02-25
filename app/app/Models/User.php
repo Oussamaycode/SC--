@@ -46,7 +46,7 @@ class User extends Authenticatable
         ];
     }
 
-    protected function memberships(){
+    public function memberships(){
        return $this->hasMany(Membership::class);
     }
 }

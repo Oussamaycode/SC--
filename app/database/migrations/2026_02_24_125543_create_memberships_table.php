@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('memberships', function (Blueprint $table) {
             $table->id();
+            $table->string('role');
             $table->foreignId('user_id')->constrained();
-            $table->foriegnId('colocation_id')->constrained();
+            $table->foreignId('colocation_id')->constrained();
             $table->timestamps();
         });
     }

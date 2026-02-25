@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
 class Colocation extends Model
 {
@@ -11,6 +12,8 @@ class Colocation extends Model
     use HasFactory;
 
     use HasUuids;
+
+    protected $fillable=['name'];
 
     public function uniqueIds(): array
     {

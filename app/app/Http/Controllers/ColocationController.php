@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Colocation;
 use App\Http\Requests\StoreColocationRequest;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Auth;
 
 class ColocationController extends Controller
 {
@@ -31,12 +32,24 @@ class ColocationController extends Controller
      */
     public function store(StoreColocationRequest $request)
     {
-        //
+        $user=Auth::user();
+        $name=$request->validated();
+        $colocation=Colocation::create($name);
+        $colocation->users()->attach($user->id);
+
+        return redirect()->route('colocation.index');
     }
 
     /**
      * Display the specified resource.
      */
+
+    public function joinColocation(Request $request){
+        Gate::authorize('create-join-colocation');
+        $colocation=Colocation::where('token',$request->token);
+        $colocation->users()->attach($user->id);
+    } 
+
     public function show(Colocation $colocation)
     {
         //

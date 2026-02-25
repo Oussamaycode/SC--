@@ -49,6 +49,10 @@
                         <i class="fas fa-users w-5"></i>
                         Membres
                     </a>
+                                        <a href="join-colocation.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-lg font-medium transition">
+                        <i class="fas fa-sign-in-alt w-5"></i>
+                        Rejoindre
+                    </a>
                 </div>
 
                 @can('show-administration')
@@ -317,10 +321,11 @@
                     <i class="fas fa-times"></i>
                 </button>
             </div>
-            <form id="createColocForm" class="space-y-4">
+            <form method='POST' action="{{route('colocation.store')}}" id="createColocForm" class="space-y-4">
+                @csrf
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Nom de la colocation</label>
-                    <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="Ex: Appartement Paris" required>
+                    <input name="name" type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="Ex: Appartement Paris" required>
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Adresse (optionnel)</label>
@@ -433,18 +438,14 @@
         }
 
         // Form submissions
-        document.getElementById('createColocForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Colocation créée avec succès !');
-            closeCreateModal();
-        });
+
         document.getElementById('addExpenseForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+         
             alert('Dépense ajoutée avec succès !');
             closeExpenseModal();
         });
         document.getElementById('inviteForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+
             alert('Invitation envoyée avec succès !');
             closeInviteModal();
         });

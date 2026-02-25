@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use App\Models\User;
+use App\Models\Membership;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -23,7 +25,7 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('show-administration',function($user){
             return $user->role==="admin";
         });
-        Gate::define('create-colocation',function($user){
+        Gate::define('create-join-colocation',function($user){
             return !$user->memberships()->exists();
         });
     }

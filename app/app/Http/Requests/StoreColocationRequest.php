@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Gate;
 
 class StoreColocationRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class StoreColocationRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return Gate::allows('create-colocation');
     }
 
     /**
@@ -22,7 +23,7 @@ class StoreColocationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+        'name'=> ['required','string','max:255'],
         ];
     }
 }
