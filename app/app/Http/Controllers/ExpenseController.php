@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\expense;
+use App\Models\Colocation;
 use App\Models\Categorie;
 use App\Http\Requests\StoreexpenseRequest;
 use App\Http\Requests\UpdateexpenseRequest;
+
+use Illuminate\Support\Facades\Gate;
 
 class ExpenseController extends Controller
 {
@@ -31,7 +34,21 @@ class ExpenseController extends Controller
      */
     public function store(StoreexpenseRequest $request)
     {
-        //
+        $user_id=auth()->id();
+        Gate::authorize('add-expense');
+        $expense=Expense::create(['amount'=>$request->amount,
+        'description'=>$request->description,
+        'user_id'=>$user_id,
+        'categorie_id'=>$request->categorie_id]);
+
+        $colocation=$user->colocation;
+        $members=$colocation->users;
+        $numberofmembers=$members->count();
+        $amount=$expenseamount
+
+        foreach($members as $member)
+        $expense->users()->attach($user_id);
+        
     }
 
     /**

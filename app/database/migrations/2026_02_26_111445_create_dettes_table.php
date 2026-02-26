@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('dettes', function (Blueprint $table) {
             $table->id();
             $table->integer('amount');
+            $table->boolean('is_payed')->default(false);
             $table->foreignId('user_id')->constrained();
             $table->foreignId('expense_id')->constrained();
             $table->timestamps();

@@ -325,10 +325,11 @@
                     <i class="fas fa-times"></i>
                 </button>
             </div>
-            <form method="POST" action="" id="addExpenseForm" class="space-y-4">
+            <form method="POST" action="{{route('expense.store')}}" id="addExpenseForm" class="space-y-4">
+                @csrf
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Description</label>
-                    <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="Ex: Courses hebdomadaires" required>
+                    <input name='description' type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="Ex: Courses hebdomadaires" required>
                 </div>
                 <div class="grid grid-cols-2 gap-4">
                     <div>
@@ -341,10 +342,10 @@
                     </div>
                 </div>
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Catégorie</label>
+                    <label class="block text-sm font-medium text-gray-700 m                                                         b-2">Catégorie</label>
                     <select name="categorie_id" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" required>
                         <option value="">Sélectionner</option>
-                        @foreach(@categories as $categorie)
+                        @foreach($categories as $categorie)
                         <option value="{{$categorie->id}}">{{$categorie->name}}</option>
                         @endforeach
                     </select>
@@ -489,7 +490,7 @@
         }
 
         document.getElementById('addExpenseForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+         
             alert('Dépense ajoutée avec succès !');
             closeAddModal();
         });

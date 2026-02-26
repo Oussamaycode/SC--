@@ -23,8 +23,8 @@ class StoreexpenseRequest extends FormRequest
      */
     public function rules(): array
     {
-        return ['amount'=>['required','integer','min:0'],]
+        return ['amount'=>['required','integer','min:0'],
+        'description' =>['required','string']];
 
-        ];
     }
 }
