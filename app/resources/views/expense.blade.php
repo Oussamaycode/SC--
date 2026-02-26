@@ -52,7 +52,7 @@
                         Rejoindre
                     </a>
                 </div>
-
+                @can('show-administration')
                 <div class="mt-8 pt-4 border-t border-gray-200">
                     <p class="px-4 text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Administration</p>
                     <a href="admin.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-lg font-medium transition">
@@ -60,6 +60,7 @@
                         Panel Admin
                     </a>
                 </div>
+                @endcan
             </nav>
 
             <div class="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200">

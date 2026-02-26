@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->integer('reputation')->default(0)->unsigned();
             $table->foreignId('colocation_id')->nullable()->constrained();
+            $table->boolean('is_owner')->default('false');
+            $table->string('role');
             $table->rememberToken();
             $table->timestamps();
         });

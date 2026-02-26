@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ColocationController;
+use App\Http\Controllers\ExpenseController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -20,6 +21,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/colocation',[ColocationController::class,'index'])->name('colocation.index');
     Route::get('/join',[ColocationController::class,'join'])->name('colocation.join.show');
     Route::post('/join',[ColocationController::class,'joinColocation'])->name('colocation.join');
+    Route::get('/expense',[ExpenseController::class,'index'])->name('expense.index');
 });
 
 require __DIR__.'/auth.php';

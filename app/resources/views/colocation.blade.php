@@ -90,14 +90,13 @@
                     <h1 class="text-2xl font-bold text-gray-800">Appartement Paris</h1>
                     <p class="text-gray-500 mt-1">12 rue de la Paix, 75002 Paris</p>
                 </div>
+                @can('cancel-colocation')
                 <div class="flex items-center gap-3">
-                    <button onclick="openEditModal()" class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition">
-                        <i class="fas fa-edit mr-2"></i>Modifier
-                    </button>
                     <button onclick="openCancelModal()" class="px-4 py-2 bg-red-100 text-red-700 rounded-lg hover:bg-red-200 transition">
                         <i class="fas fa-times-circle mr-2"></i>Annuler la colocation
                     </button>
                 </div>
+                @endcan
             </div>
 
             <!-- Status Banner -->

@@ -28,5 +28,11 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('create-join-colocation',function($user){
             return !$user->memberships()->exists();
         });
+        Gate::define('cancel-colocation',function($user){
+            return $user->is_owner===true;
+        });
+        Gate::define('add-expense',function($user){
+            return $user
+        });
     }
 }

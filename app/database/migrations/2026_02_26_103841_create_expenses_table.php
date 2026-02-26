@@ -11,24 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('memberships', function (Blueprint $table) {
+        Schema::create('expenses', function (Blueprint $table) {
             $table->id();
-            $table->string('role')->defualt('member');
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('colocation_id')->constrained();
             $table->timestamps();
         });
     }
-
-    //A membership gets canceled automatically when removing a member from the colocation
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('memberships');
+        Schema::dropIfExists('expenses');
     }
-
-
 };

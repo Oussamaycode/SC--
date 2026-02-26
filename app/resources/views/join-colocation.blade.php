@@ -38,13 +38,10 @@
                 <div class="relative">
                     <i class="fas fa-key absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
                     <input name="token"
-                        type="text" 
-                        id="invitationToken" 
-                        class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition uppercase tracking-wider text-center text-lg font-mono" 
-                        placeholder="XXXX-XXXX-XXXX" 
-                        maxlength="14"
-                        required
-                    >
+                    type="text"
+                    class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition uppercase tracking-wider text-center text-lg font-mono" 
+                    placeholder="Paste invitation token"
+                    required>
                 </div>
                 <p class="text-xs text-gray-500 mt-2">
                     <i class="fas fa-info-circle mr-1"></i>
@@ -230,7 +227,7 @@
 
         // Token form submission
         document.getElementById('tokenForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+           // e.preventDefault();
             const token = document.getElementById('invitationToken').value.replace(/-/g, '');
             
             // Simulate API call to verify token

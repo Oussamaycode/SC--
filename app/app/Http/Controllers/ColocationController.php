@@ -6,6 +6,7 @@ use App\Models\Colocation;
 use App\Http\Requests\StoreColocationRequest;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class ColocationController extends Controller
 {
@@ -22,7 +23,7 @@ class ColocationController extends Controller
      */
     public function create()
     {
-        Gate::authorize('create-colocation');
+        Gate::authorize('create-join-colocation');
         $user=Auth::user();
         return index();
     }
@@ -35,8 +36,8 @@ class ColocationController extends Controller
         $user=Auth::user();
         $name=$request->validated();
         $colocation=Colocation::create($name);
-        $colocation->users()->attach($user->id);
-
+        $colocation->users()->attach($user->id,['role'=>'owner']);
+        $user->update(['is_owner'=>true]);
         return redirect()->route('colocation.index');
     }
 
@@ -46,9 +47,11 @@ class ColocationController extends Controller
 
     public function joinColocation(Request $request){
         Gate::authorize('create-join-colocation');
-        $colocation=Colocation::where('token',$request->token);
+        $user=Auth::user();
+        $request->validate(['token'=>['required','uuid']]);
+        $colocation=Colocation::where('token',$request->token)->first();
         $colocation->users()->attach($user->id);
-        return redirect()->route()
+        return redirect()->route('colocation.index');
     }
     
     public function join(){
