@@ -44,11 +44,14 @@ class ExpenseController extends Controller
         $colocation=$user->colocation;
         $members=$colocation->users;
         $numberofmembers=$members->count();
-        $amount=$expenseamount
+        $amount=$expense->amount/$numberofmembers;
 
         foreach($members as $member)
-        $expense->users()->attach($user_id);
-        
+
+        if($member->id!=$user_id) {
+        $expense->users()->attach($member->id,['amount'=>$amount]);
+
+        }        
     }
 
     /**
