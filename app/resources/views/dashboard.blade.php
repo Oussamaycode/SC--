@@ -37,10 +37,12 @@
                         <i class="fas fa-house-user w-5"></i>
                         Ma Colocation
                     </a>
-                    <a href="expenses.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-lg font-medium transition">
+                    @can('add-expense')
+                    <a href="{{routr('expense.index')}}" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-lg font-medium transition">
                         <i class="fas fa-receipt w-5"></i>
                         Dépenses
                     </a>
+                    @endcan
                     <a href="balances.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-lg font-medium transition">
                         <i class="fas fa-scale-balanced w-5"></i>
                         Soldes
