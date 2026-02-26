@@ -17,7 +17,8 @@ class ExpenseController extends Controller
      */
     public function index()
     {   
-        $categories=Categorie::all();     
+        $categories=Categorie::all();
+        $expenses=Expense::all();     
         return view('expense',compact('categories'));
     }
 
@@ -34,11 +35,11 @@ class ExpenseController extends Controller
      */
     public function store(StoreexpenseRequest $request)
     {
-        $user_id=auth()->id();
+        $user=auth()->user();
         Gate::authorize('add-expense');
         $expense=Expense::create(['amount'=>$request->amount,
         'description'=>$request->description,
-        'user_id'=>$user_id,
+        'user_id'=>$user->id,
         'categorie_id'=>$request->categorie_id]);
 
         $colocation=$user->colocation;
@@ -48,10 +49,11 @@ class ExpenseController extends Controller
 
         foreach($members as $member)
 
-        if($member->id!=$user_id) {
+        if($member->id!=$user->id) {
         $expense->users()->attach($member->id,['amount'=>$amount]);
-
-        }        
+        } 
+        
+        return redirect()->route('expense.index');
     }
 
     /**
