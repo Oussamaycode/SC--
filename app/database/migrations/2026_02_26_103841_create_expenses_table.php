@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('expenses', function (Blueprint $table) {
             $table->id();
+            $table->integer('amount');
+            $table->foreignId('categorie_id');
             $table->timestamps();
         });
     }

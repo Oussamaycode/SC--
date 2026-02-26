@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\expense;
+use App\Models\Categorie;
 use App\Http\Requests\StoreexpenseRequest;
 use App\Http\Requests\UpdateexpenseRequest;
 
@@ -12,8 +13,9 @@ class ExpenseController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        return view('expense');
+    {   
+        $categories=Categorie::all();     
+        return view('expense',compact('categories'));
     }
 
     /**

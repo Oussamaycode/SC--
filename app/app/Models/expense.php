@@ -10,7 +10,13 @@ class expense extends Model
     /** @use HasFactory<\Database\Factories\ExpenseFactory> */
     use HasFactory;
 
+    protected $fillable=['amount','categorie_id'];
+
     public function users(){
         return $this->belongsToMany(User::class,'dettes');
+    }
+
+    public function categories(){
+        return $this->hasMany(User::class);
     }
 }

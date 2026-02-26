@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Gate;
+
 
 class StoreexpenseRequest extends FormRequest
 {
@@ -11,7 +13,7 @@ class StoreexpenseRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return Gate::allows('add-expense');
     }
 
     /**
@@ -22,7 +24,7 @@ class StoreexpenseRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            
         ];
     }
 }

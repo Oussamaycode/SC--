@@ -9,4 +9,9 @@ class Categorie extends Model
 {
     /** @use HasFactory<\Database\Factories\CategorieFactory> */
     use HasFactory;
+
+    public function expense()
+    {
+        return $this->belongsTo(Expense::class);
+    }
 }

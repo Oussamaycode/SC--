@@ -22,6 +22,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/join',[ColocationController::class,'join'])->name('colocation.join.show');
     Route::post('/join',[ColocationController::class,'joinColocation'])->name('colocation.join');
     Route::get('/expense',[ExpenseController::class,'index'])->name('expense.index');
+    Route::post('/expense',[ExpenseController::class,'store'])->name=('expense.store');
+    
 });
 
 require __DIR__.'/auth.php';

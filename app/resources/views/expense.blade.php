@@ -325,7 +325,7 @@
                     <i class="fas fa-times"></i>
                 </button>
             </div>
-            <form id="addExpenseForm" class="space-y-4">
+            <form method="POST" action="" id="addExpenseForm" class="space-y-4">
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Description</label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="Ex: Courses hebdomadaires" required>
@@ -333,7 +333,7 @@
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Montant (€)</label>
-                        <input type="number" step="0.01" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="0.00" required>
+                        <input name="amount" type="number" step="0.01" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="0.00" required>
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Date</label>
@@ -342,13 +342,11 @@
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Catégorie</label>
-                    <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" required>
+                    <select name="categorie_id" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" required>
                         <option value="">Sélectionner</option>
-                        <option value="alimentation">Alimentation</option>
-                        <option value="charges">Charges</option>
-                        <option value="loisirs">Loisirs</option>
-                        <option value="transport">Transport</option>
-                        <option value="autre">Autre</option>
+                        @foreach(@categories as $categorie)
+                        <option value="{{$categorie->id}}">{{$categorie->name}}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="flex gap-3 pt-2">
