@@ -41,6 +41,7 @@ class ExpenseController extends Controller
         $expense=Expense::create(['amount'=>$request->amount,
         'description'=>$request->description,
         'user_id'=>$user->id,
+        'date'=>$request->date,
         'categorie_id'=>$request->categorie_id]);
 
         $membership=Membership::where('user_id',$user->id)->first();
