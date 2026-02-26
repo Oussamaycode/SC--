@@ -48,7 +48,7 @@ class ColocationController extends Controller
         Gate::authorize('create-join-colocation');
         $colocation=Colocation::where('token',$request->token);
         $colocation->users()->attach($user->id);
-        return redirect()->ro
+        return redirect()->route()
     }
     
     public function join(){
