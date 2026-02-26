@@ -50,7 +50,7 @@ class ColocationController extends Controller
         $user=Auth::user();
         $request->validate(['token'=>['required','uuid']]);
         $colocation=Colocation::where('token',$request->token)->first();
-        $colocation->users()->attach($user->id);
+        $colocation->users()->attach($user->id,['role'=>'member']);
         return redirect()->route('colocation.index');
     }
     

@@ -55,4 +55,8 @@ class User extends Authenticatable
     public function dettes(){
         return $this->hasMany(Dette::class);
     }
+
+    public function colocations(){
+        return $this->belongsToMany(Colocation::class,'memberships');
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\expense;
 use App\Models\Colocation;
+use App\Models\Membership;
 use App\Models\Categorie;
 use App\Http\Requests\StoreexpenseRequest;
 use App\Http\Requests\UpdateexpenseRequest;
@@ -42,15 +43,16 @@ class ExpenseController extends Controller
         'user_id'=>$user->id,
         'categorie_id'=>$request->categorie_id]);
 
-        $colocation=$user->colocation;
+        $membership=Membership::where('user_id',$user->id)->first();
+        $colocation=Colocation::where('id',$membership->colocation_id)->where('is_active',true)->first();
         $members=$colocation->users;
-        $numberofmembers=$members->count();
+        $numberofmembers=$colocation->users()->count();
         $amount=$expense->amount/$numberofmembers;
 
         foreach($members as $member)
 
         if($member->id!=$user->id) {
-        $expense->users()->attach($member->id,['amount'=>$amount]);
+          $expense->users()->attach($member->id,['amount'=>$amount]);
         } 
         
         return redirect()->route('expense.index');
