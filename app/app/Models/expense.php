@@ -9,4 +9,8 @@ class expense extends Model
 {
     /** @use HasFactory<\Database\Factories\ExpenseFactory> */
     use HasFactory;
+
+    public function users(){
+        return $this->belongsToMany(User::class,'dettes');
+    }
 }

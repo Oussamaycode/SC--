@@ -51,4 +51,8 @@ class User extends Authenticatable
     public function memberships(){
        return $this->hasMany(Membership::class);
     }
+
+    public function dettes(){
+        return $this->hasMany(Dette::class);
+    }
 }
