@@ -60,12 +60,12 @@ class ColocationController extends Controller
 
     public function quitColocation(){
         $user=Auth::user();
-        $colocation=$user->colocations->where('is_active',true)->get();
+        $colocation=$user->colocations->where('is_active',true)->first();
         $colocation->users()->detach($user_id);
-        $expenses=$user->expenses();
+        $expenses=$user->expenses()->get();
         
-        foreach($expense as $expense){
-            $expense->users()->detach($user->id);
+        foreach($expenses as $expense){
+            $user->expenses()->detach();
         }
     }
 
