@@ -97,6 +97,13 @@
                     </button>
                 </div>
                 @endcan
+                @cannot('cancel-colocation')
+                <div class="flex items-center gap-3">
+                    <button onclick="openCancelModal()" class="px-4 py-2 bg-red-100 text-red-700 rounded-lg hover:bg-red-200 transition">
+                        <i class="fas fa-times-circle mr-2"></i>Quitter la colocation
+                    </button>
+                </div>
+                @endcannot
             </div>
 
             <!-- Status Banner -->

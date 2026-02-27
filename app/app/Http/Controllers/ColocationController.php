@@ -58,6 +58,12 @@ class ColocationController extends Controller
         return view('join-colocation');
     }
 
+    public function quitColocation(){
+        $user=Auth::user();
+        $colocation=$user->colocation->where('is_active',true)->get();
+        $colocation->users()->deattach($)
+    }
+
     public function show(Colocation $colocation)
     {
         //

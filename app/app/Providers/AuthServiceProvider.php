@@ -47,5 +47,9 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('mark-expense-aspayed',function($user,$dette){
             return $user->id===$dette->user_id;
         });
+
+        Gate::define('invite-members',function($user){
+            return $user->is_owner===true;
+        });
     }
 }

@@ -165,21 +165,21 @@
 
                 <div class="space-y-4">
                     @foreach($dettes as $dette)
-                      @if($dette->is_payed==false)
+                      @if($dette->is_payed===false)
                     <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
                         <div class="flex items-center gap-4">
                             <div class="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center">
                                 <span class="text-pink-600 font-bold text-sm">ML</span>
                             </div>
                             <div>
-                                <p class="font-medium text-gray-800">Marie Lefebvre</p>
+                                <p class="font-medium text-gray-800">{{$dette->user->name}}</p>
                                 <p class="text-sm text-gray-500">doit payer</p>
                                 <p class="text-sm text-gray-500">In expense : {{$dette->expense->description}}</p>
                             </div>
                         </div>
                         <div class="flex items-center gap-4">
                             <div class="text-center">
-                                <p class="text-2xl font-bold text-gray-800">{{$dette->amount}}</p>
+                                <p class="text-2xl font-bold text-gray-800">${{$dette->amount}}</p>
                             </div>
                             <i class="fas fa-arrow-right text-gray-400"></i>
                             <div class="flex items-center gap-3">
@@ -204,36 +204,21 @@
                     <h2 class="text-lg font-bold text-gray-800">Historique des paiements</h2>
                 </div>
                 <div class="space-y-4">
+                    @foreach($dettes as $dette)
+                    @if($dette->is_payed===true)
                     <div class="flex items-center gap-4 p-4 bg-green-50 rounded-lg border border-green-200">
                         <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
                             <i class="fas fa-check text-green-600"></i>
                         </div>
                         <div class="flex-1">
-                            <p class="font-medium text-gray-800">Pierre Durand a remboursé Jean Dupont</p>
+                            <p class="font-medium text-gray-800">{{$dette->user->name}} a remboursé {{$dette->expense->user->name}}</p>
                             <p class="text-sm text-gray-500">15 février 2024</p>
                         </div>
-                        <span class="font-bold text-green-600">€45.00</span>
+                        <span class="font-bold text-green-600">${{$dette->amount}}</span>
                     </div>
-                    <div class="flex items-center gap-4 p-4 bg-green-50 rounded-lg border border-green-200">
-                        <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
-                            <i class="fas fa-check text-green-600"></i>
-                        </div>
-                        <div class="flex-1">
-                            <p class="font-medium text-gray-800">Marie Lefebvre a remboursé Jean Dupont</p>
-                            <p class="text-sm text-gray-500">10 février 2024</p>
-                        </div>
-                        <span class="font-bold text-green-600">€30.00</span>
-                    </div>
-                    <div class="flex items-center gap-4 p-4 bg-green-50 rounded-lg border border-green-200">
-                        <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
-                            <i class="fas fa-check text-green-600"></i>
-                        </div>
-                        <div class="flex-1">
-                            <p class="font-medium text-gray-800">Jean Dupont a remboursé Marie Lefebvre</p>
-                            <p class="text-sm text-gray-500">5 janvier 2024</p>
-                        </div>
-                        <span class="font-bold text-green-600">€15.50</span>
-                    </div>
+                    @endif
+                    @endforeach
+                    
                 </div>
             </div>
         </main>
