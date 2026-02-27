@@ -173,23 +173,26 @@
                             <div>
                                 <p class="font-medium text-gray-800">Marie Lefebvre</p>
                                 <p class="text-sm text-gray-500">doit payer</p>
+                                <p class="text-sm text-gray-500">In expense : {{$expense->name}}</p>
                             </div>
                         </div>
                         <div class="flex items-center gap-4">
                             <div class="text-center">
-                                <p class="text-2xl font-bold text-gray-800">€21.00</p>
+                                <p class="text-2xl font-bold text-gray-800">{{$dette->amount}}</p>
                             </div>
                             <i class="fas fa-arrow-right text-gray-400"></i>
                             <div class="flex items-center gap-3">
                                 <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center">
                                     <span class="text-indigo-600 font-bold text-sm">JD</span>
                                 </div>
-                                <p class="font-medium text-gray-800">Jean Dupont</p>
+                                <p class="font-medium text-gray-800">{{$expense->user->name}}</p>
                             </div>
                         </div>
-                        <a href="{{route('dette.markaspayed')}}" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">
+                        @can('mark-as-payed')
+                        <a href="{{route('dette.markaspayed',['id'=>$dette->id])}}" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">
                             <i class="fas fa-check mr-2"></i>Marquer payé
                         </a>
+                        @endcan
                     </div>
                     @endforeach
                     <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">

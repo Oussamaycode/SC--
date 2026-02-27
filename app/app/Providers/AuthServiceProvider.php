@@ -43,5 +43,9 @@ class AuthServiceProvider extends ServiceProvider
                     $query->where('is_active', true);
                     })->exists();
             });
+
+        Gate::define('mark-expense-aspayed',function($user,$dette){
+            return $user->id===$dette->user_id;
+        });
     }
 }

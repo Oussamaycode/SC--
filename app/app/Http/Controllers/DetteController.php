@@ -17,6 +17,13 @@ class DetteController extends Controller
         return view('dette',compact('dettes'));
     }
 
+    public function markaspayed($id){
+        $dette=Dette::findOrFail($id);
+        Gate::authorize('mark-as-payed',$dette);
+        $dette->update(['is_payed'=>true]);
+        return redirect()->route('dette.index');
+    }
+
     /**
      * Show the form for creating a new resource.
      */
