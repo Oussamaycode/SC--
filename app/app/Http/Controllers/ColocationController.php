@@ -60,16 +60,26 @@ class ColocationController extends Controller
 
     public function quitColocation(){
         $user=Auth::user();
-        $colocation=$user->colocations->where('is_active',true)->first();
-        $colocation->users()->detach($user_id);
+        $colocation=$user->colocations()->where('is_active',true)->firstOrFail();
         $expenses=$user->expenses()->get();
-        $membership=$user->memberships->where('colocation_id',$colocation_id)->first();
-        if ($membership->role==='admin'){
-             return back()->with('error', 'Owner of expense cannot quit.');
+        if ($user->is_owner){
+            return back()->with('error', 'Owner of collocation cannot quit.');
         }
+
+        $owner=$colocation->users()->where('is_owner',true)->first();
+
+        foreach($expenses as $expense){
+            if ($expense->user_id===$user->id){
+               return back()->with('error', 'Owner of expense cannot quit.');
+            }else{
+                $dette=$expense->pivot;
+                $expense->users()->detach($user->id);
+                $expense->users()->attach($user->id,['amount'=>]);
+            }
+        }
+        $colocation->users()->detach($user->id);
         $user->expenses()->detach();
-        $owner=$colocation->users->where('is_owner',true)->first();
-        $owner->expenses()->attach($owner_id);
+        $user->decrement('reputation');
     }
 
     public function show(Colocation $colocation)

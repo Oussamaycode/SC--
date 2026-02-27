@@ -17,7 +17,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('image')->nullable();
-            $table->integer('reputation')->default(0)->unsigned();
+            $table->integer('reputation')->default(1)->unsigned();
             $table->foreignId('colocation_id')->nullable()->constrained();
             $table->boolean('is_owner')->default('false');
             $table->string('role');

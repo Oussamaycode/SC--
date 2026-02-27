@@ -25,6 +25,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/expense',[ExpenseController::class,'index'])->name('expense.index');
     Route::post('/expense',[ExpenseController::class,'store'])->name('expense.store');
     Route::get('/dette',[DetteController::class,'index'])->name('dette.index');
+    Route::get('')
 });
 
 require __DIR__.'/auth.php';
