@@ -187,7 +187,7 @@
                                 <p class="font-medium text-gray-800">Jean Dupont</p>
                             </div>
                         </div>
-                        <a href="{{route()}}" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">
+                        <a href="{{route('dette.markaspayed')}}" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">
                             <i class="fas fa-check mr-2"></i>Marquer payé
                         </a>
                     </div>
