@@ -68,7 +68,8 @@ class ColocationController extends Controller
              return back()->with('error', 'Owner of expense cannot quit.');
         }
         $user->expenses()->detach();
-        $owner=
+        $owner=$colocation->users->where('is_owner',true)->first();
+        $owner->expenses()->attach($owner_id);
     }
 
     public function show(Colocation $colocation)
