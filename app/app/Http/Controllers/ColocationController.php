@@ -63,10 +63,12 @@ class ColocationController extends Controller
         $colocation=$user->colocations->where('is_active',true)->first();
         $colocation->users()->detach($user_id);
         $expenses=$user->expenses()->get();
-        
-        foreach($expenses as $expense){
-            $user->expenses()->detach();
+        $membership=$user->memberships->where('colocation_id',$colocation_id)->first();
+        if ($membership->role==='admin'){
+             return back()->with('error', 'Owner of expense cannot quit.');
         }
+        $user->expenses()->detach();
+        $owner=
     }
 
     public function show(Colocation $colocation)
