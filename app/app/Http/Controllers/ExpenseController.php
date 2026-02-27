@@ -19,8 +19,9 @@ class ExpenseController extends Controller
     public function index()
     {   
         $categories=Categorie::all();
-        $expenses=Expense::all();     
-        return view('expense',compact('categories'));
+        $expenses=Expense::with(['categorie', 'users'])->get();
+        //$expenseMaker=User::where('user_id');
+        return $expenses; //view('expense',compact('categories','expenses'));
     }
 
     /**

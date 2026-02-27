@@ -10,8 +10,8 @@ class Categorie extends Model
     /** @use HasFactory<\Database\Factories\CategorieFactory> */
     use HasFactory;
 
-    public function expense()
+    public function expenses()
     {
-        return $this->belongsTo(Expense::class);
+        return $this->hasMany(Expense::class);
     }
 }

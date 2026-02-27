@@ -166,94 +166,23 @@
                         </tr>
                     </thead>
                     <tbody id="expensesTable">
-                        <tr class="border-b border-gray-100 hover:bg-gray-50 expense-row" data-month="2024-02" data-category="alimentation" data-member="marie">
-                            <td class="py-4 px-6">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
-                                        <i class="fas fa-shopping-cart text-blue-600 text-sm"></i>
-                                    </div>
-                                    <span class="font-medium text-gray-800">Courses hebdomadaires</span>
-                                </div>
-                            </td>
-                            <td class="py-4 px-6">
-                                <span class="px-2 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium">Alimentation</span>
-                            </td>
-                            <td class="py-4 px-6 text-gray-600">20 février 2024</td>
-                            <td class="py-4 px-6 text-gray-600">Marie Lefebvre</td>
-                            <td class="py-4 px-6 text-right font-medium text-gray-800">€87.50</td>
-                            <td class="py-4 px-6 text-center">
-                                <button onclick="openEditExpenseModal(1)" class="text-gray-400 hover:text-indigo-600 transition mr-2">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button onclick="openDeleteModal(1)" class="text-gray-400 hover:text-red-600 transition">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr class="border-b border-gray-100 hover:bg-gray-50 expense-row" data-month="2024-02" data-category="charges" data-member="me">
-                            <td class="py-4 px-6">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
-                                        <i class="fas fa-bolt text-purple-600 text-sm"></i>
-                                    </div>
-                                    <span class="font-medium text-gray-800">Facture électricité</span>
-                                </div>
-                            </td>
-                            <td class="py-4 px-6">
-                                <span class="px-2 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">Charges</span>
-                            </td>
-                            <td class="py-4 px-6 text-gray-600">19 février 2024</td>
-                            <td class="py-4 px-6 text-gray-600">Vous</td>
-                            <td class="py-4 px-6 text-right font-medium text-gray-800">€124.00</td>
-                            <td class="py-4 px-6 text-center">
-                                <button onclick="openEditExpenseModal(2)" class="text-gray-400 hover:text-indigo-600 transition mr-2">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button onclick="openDeleteModal(2)" class="text-gray-400 hover:text-red-600 transition">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr class="border-b border-gray-100 hover:bg-gray-50 expense-row" data-month="2024-02" data-category="loisirs" data-member="pierre">
-                            <td class="py-4 px-6">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center">
-                                        <i class="fas fa-utensils text-orange-600 text-sm"></i>
-                                    </div>
-                                    <span class="font-medium text-gray-800">Dîner entre colocs</span>
-                                </div>
-                            </td>
-                            <td class="py-4 px-6">
-                                <span class="px-2 py-1 bg-orange-100 text-orange-700 rounded-full text-xs font-medium">Loisirs</span>
-                            </td>
-                            <td class="py-4 px-6 text-gray-600">15 février 2024</td>
-                            <td class="py-4 px-6 text-gray-600">Pierre Durand</td>
-                            <td class="py-4 px-6 text-right font-medium text-gray-800">€45.00</td>
-                            <td class="py-4 px-6 text-center">
-                                <button onclick="openEditExpenseModal(3)" class="text-gray-400 hover:text-indigo-600 transition mr-2">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button onclick="openDeleteModal(3)" class="text-gray-400 hover:text-red-600 transition">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        foreach($expenses ax expense)
+
+                        @foreach($expenses as $expense)
                         <tr class="border-b border-gray-100 hover:bg-gray-50 expense-row" data-month="2024-02" data-category="alimentation" data-member="me">
                             <td class="py-4 px-6">
                                 <div class="flex items-center gap-3">
                                     <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
                                         <i class="fas fa-shopping-cart text-blue-600 text-sm"></i>
                                     </div>
-                                    <span class="font-medium text-gray-800">Courses Lidl</span>
+                                    <span class="font-medium text-gray-800">{{$expense->description}}</span>
                                 </div>
                             </td>
                             <td class="py-4 px-6">
-                                <span class="px-2 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium">Alimentation</span>
+                                <span class="px-2 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium">{{$expense->categorie->name}}</span>
                             </td>
-                            <td class="py-4 px-6 text-gray-600">12 février 2024</td>
-                            <td class="py-4 px-6 text-gray-600">Vous</td>
-                            <td class="py-4 px-6 text-right font-medium text-gray-800">€56.30</td>
+                            <td class="py-4 px-6 text-gray-600">{{$expense->date}}</td>
+                            <td class="py-4 px-6 text-gray-600">{{$expense->user->name}}</td>
+                            <td class="py-4 px-6 text-right font-medium text-gray-800">{{$expense->amount}}</td>
                             <td class="py-4 px-6 text-center">
                                 <button onclick="openEditExpenseModal(4)" class="text-gray-400 hover:text-indigo-600 transition mr-2">
                                     <i class="fas fa-edit"></i>
@@ -263,54 +192,8 @@
                                 </button>
                             </td>
                         </tr>
-                        <tr class="border-b border-gray-100 hover:bg-gray-50 expense-row" data-month="2024-01" data-category="charges" data-member="marie">
-                            <td class="py-4 px-6">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
-                                        <i class="fas fa-wifi text-purple-600 text-sm"></i>
-                                    </div>
-                                    <span class="font-medium text-gray-800">Internet - Janvier</span>
-                                </div>
-                            </td>
-                            <td class="py-4 px-6">
-                                <span class="px-2 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">Charges</span>
-                            </td>
-                            <td class="py-4 px-6 text-gray-600">28 janvier 2024</td>
-                            <td class="py-4 px-6 text-gray-600">Marie Lefebvre</td>
-                            <td class="py-4 px-6 text-right font-medium text-gray-800">€29.99</td>
-                            <td class="py-4 px-6 text-center">
-                                <button onclick="openEditExpenseModal(5)" class="text-gray-400 hover:text-indigo-600 transition mr-2">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button onclick="openDeleteModal(5)" class="text-gray-400 hover:text-red-600 transition">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr class="border-b border-gray-100 hover:bg-gray-50 expense-row" data-month="2024-01" data-category="transport" data-member="pierre">
-                            <td class="py-4 px-6">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
-                                        <i class="fas fa-bus text-green-600 text-sm"></i>
-                                    </div>
-                                    <span class="font-medium text-gray-800">Abonnement transport</span>
-                                </div>
-                            </td>
-                            <td class="py-4 px-6">
-                                <span class="px-2 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium">Transport</span>
-                            </td>
-                            <td class="py-4 px-6 text-gray-600">15 janvier 2024</td>
-                            <td class="py-4 px-6 text-gray-600">Pierre Durand</td>
-                            <td class="py-4 px-6 text-right font-medium text-gray-800">€75.20</td>
-                            <td class="py-4 px-6 text-center">
-                                <button onclick="openEditExpenseModal(6)" class="text-gray-400 hover:text-indigo-600 transition mr-2">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button onclick="openDeleteModal(6)" class="text-gray-400 hover:text-red-600 transition">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
+                        @endforeach
+  
                     </tbody>
                 </table>
             </div>
