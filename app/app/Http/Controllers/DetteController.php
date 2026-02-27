@@ -13,7 +13,7 @@ class DetteController extends Controller
      */
     public function index()
     {   
-        $dettes=Dette::with('user','expense');
+        $dettes=Dette::with('user','expense')->get();
         return view('dette',compact('dettes'));
     }
 

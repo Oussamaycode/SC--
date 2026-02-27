@@ -164,7 +164,8 @@
                 </div>
 
                 <div class="space-y-4">
-                    foreach($dettes as $dette)
+                    @foreach($dettes as $dette)
+                      @if($dette->is_payed==false)
                     <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
                         <div class="flex items-center gap-4">
                             <div class="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center">
@@ -173,7 +174,7 @@
                             <div>
                                 <p class="font-medium text-gray-800">Marie Lefebvre</p>
                                 <p class="text-sm text-gray-500">doit payer</p>
-                                <p class="text-sm text-gray-500">In expense : {{$expense->name}}</p>
+                                <p class="text-sm text-gray-500">In expense : {{$dette->expense->description}}</p>
                             </div>
                         </div>
                         <div class="flex items-center gap-4">
@@ -185,7 +186,7 @@
                                 <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center">
                                     <span class="text-indigo-600 font-bold text-sm">JD</span>
                                 </div>
-                                <p class="font-medium text-gray-800">{{$expense->user->name}}</p>
+                                <p class="font-medium text-gray-800">{{$dette->expense->user->name}}</p>
                             </div>
                         </div>
                         @can('mark-as-payed')
@@ -194,35 +195,8 @@
                         </a>
                         @endcan
                     </div>
+                    @endif
                     @endforeach
-                    <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                        <div class="flex items-center gap-4">
-                            <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
-                                <span class="text-green-600 font-bold text-sm">PD</span>
-                            </div>
-                            <div>
-                                <p class="font-medium text-gray-800">Pierre Durand</p>
-                                <p class="text-sm text-gray-500">doit payer</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <div class="text-center">
-                                <p class="text-2xl font-bold text-gray-800">€24.50</p>
-                            </div>
-                            <i class="fas fa-arrow-right text-gray-400"></i>
-                            <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center">
-                                    <span class="text-indigo-600 font-bold text-sm">JD</span>
-                                </div>
-                                <p class="font-medium text-gray-800">Jean Dupont</p>
-                            </div>
-                        </div>
-                        <button onclick="openPayModal('Pierre Durand', 24.50, 'Jean Dupont')" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">
-                            <i class="fas fa-check mr-2"></i>Marquer payé
-                        </button>
-                    </div>
-                </div>
-            </div>
 
             <!-- Payment History -->
             <div class="bg-white rounded-xl shadow-sm p-6">
