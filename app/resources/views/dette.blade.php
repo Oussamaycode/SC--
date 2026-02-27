@@ -164,6 +164,7 @@
                 </div>
 
                 <div class="space-y-4">
+                    foreach($dettes as $dette)
                     <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
                         <div class="flex items-center gap-4">
                             <div class="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center">
@@ -186,11 +187,11 @@
                                 <p class="font-medium text-gray-800">Jean Dupont</p>
                             </div>
                         </div>
-                        <button onclick="openPayModal('Marie Lefebvre', 21.00, 'Jean Dupont')" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">
+                        <a href="{{route()}}" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">
                             <i class="fas fa-check mr-2"></i>Marquer payé
-                        </button>
+                        </a>
                     </div>
-
+                    @endforeach
                     <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
                         <div class="flex items-center gap-4">
                             <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">

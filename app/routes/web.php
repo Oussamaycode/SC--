@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ColocationController;
 use App\Http\Controllers\ExpenseController;
+use App\Http\Controllers\DetteController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -23,7 +24,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/join',[ColocationController::class,'joinColocation'])->name('colocation.join');
     Route::get('/expense',[ExpenseController::class,'index'])->name('expense.index');
     Route::post('/expense',[ExpenseController::class,'store'])->name('expense.store');
-    
+    Route::get('/dette',[DetteController::class,'index'])->name('dette.index');
 });
 
 require __DIR__.'/auth.php';

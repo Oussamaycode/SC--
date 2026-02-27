@@ -16,7 +16,7 @@ class expense extends Model
         return $this->belongsToMany(User::class,'dettes');
     }
 
-    public function creator(){
+    public function user(){
         return $this->belongsTo(User::class);
     }
 

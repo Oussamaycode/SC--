@@ -12,8 +12,9 @@ class DetteController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        //
+    {   
+        $dettes=Dette::with('user','expense');
+        return view('dette',compact('dettes'));
     }
 
     /**
