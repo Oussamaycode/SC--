@@ -64,8 +64,8 @@
                         <i class="fas fa-user text-gray-600"></i>
                     </div>
                     <div class="flex-1 min-w-0">
-                        <p class="text-sm font-medium text-gray-900 truncate">Jean Dupont</p>
-                        <p class="text-xs text-gray-500 truncate">jean@email.com</p>
+                        <p class="text-sm font-medium text-gray-900 truncate">{{auth()->user()->name}}</p>
+                        <p class="text-xs text-gray-500 truncate">{{auth()->user()->email}}</p>
                     </div>
                     <a href="login.html" class="text-gray-400 hover:text-red-500 transition">
                         <i class="fas fa-sign-out-alt"></i>

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('reputation')->default(1)->unsigned();
             $table->foreignId('colocation_id')->nullable()->constrained();
             $table->boolean('is_owner')->default('false');
+            $table->boolean('is_banned')->default('false');
             $table->string('role');
             $table->rememberToken();
             $table->timestamps();
