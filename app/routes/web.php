@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ColocationController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\DetteController;
+use App\Http\Controllers\Admin\AdminDashboardController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -26,7 +27,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/expense',[ExpenseController::class,'store'])->name('expense.store');
     Route::get('/dette',[DetteController::class,'index'])->name('dette.index');
     Route::get('quit',[ColocationController::class,'quitColocation'])->name('colocation.quit');
-    Route::get('/admin',[AdminDashboardController::class,'index'])->name('admin.dashboard');
+    Route::get('/admin',[AdminDashboardController::class,'index'])->name('admin.dashboard')->middleware('can:show-administration');
 });
 
 require __DIR__.'/auth.php';
