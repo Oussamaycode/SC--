@@ -99,7 +99,7 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-sm text-gray-500">Utilisateurs totaux</p>
-                            <p class="text-3xl font-bold text-gray-800">156</p>
+                            <p class="text-3xl font-bold text-gray-800">{{$userCount}}</p>
                         </div>
                         <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
                             <i class="fas fa-users text-blue-600 text-xl"></i>
@@ -118,7 +118,7 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-sm text-gray-500">Colocations actives</p>
-                            <p class="text-3xl font-bold text-gray-800">48</p>
+                            <p class="text-3xl font-bold text-gray-800">{{$activeColocations}}</p>
                         </div>
                         <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
                             <i class="fas fa-house-user text-green-600 text-xl"></i>
@@ -137,7 +137,7 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-sm text-gray-500">Dépenses totales</p>
-                            <p class="text-3xl font-bold text-gray-800">€24.5K</p>
+                            <p class="text-3xl font-bold text-gray-800">€{{$expenseSum}}</p>
                         </div>
                         <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
                             <i class="fas fa-receipt text-purple-600 text-xl"></i>
@@ -152,7 +152,7 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-sm text-gray-500">Utilisateurs bannis</p>
-                            <p class="text-3xl font-bold text-red-600">3</p>
+                            <p class="text-3xl font-bold text-red-600">{{$bannedUsersCount}}</p>
                         </div>
                         <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
                             <i class="fas fa-ban text-red-600 text-xl"></i>
@@ -197,27 +197,28 @@
                                 <tr class="border-b border-gray-200">
                                     <th class="text-left py-3 px-4 text-sm font-medium text-gray-500">Utilisateur</th>
                                     <th class="text-left py-3 px-4 text-sm font-medium text-gray-500">Email</th>
-                                    <th class="text-left py-3 px-4 text-sm font-medium text-gray-500">Inscription</th>
                                     <th class="text-left py-3 px-4 text-sm font-medium text-gray-500">Colocation</th>
+                                    <th class="text-left py-3 px-4 text-sm font-medium text-gray-500">Status </th>
                                     <th class="text-left py-3 px-4 text-sm font-medium text-gray-500">Rôle</th>
                                     <th class="text-center py-3 px-4 text-sm font-medium text-gray-500">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach($memberships as $membership)
                                 <tr class="border-b border-gray-100 hover:bg-gray-50">
                                     <td class="py-3 px-4">
                                         <div class="flex items-center gap-3">
                                             <div class="w-8 h-8 bg-indigo-600 rounded-full flex items-center justify-center text-white text-sm font-bold">JD</div>
-                                            <span class="font-medium text-gray-800">Jean Dupont</span>
+                                            <span class="font-medium text-gray-800">{{$membership->user->name}}</span>
                                         </div>
                                     </td>
-                                    <td class="py-3 px-4 text-gray-600">jean@email.com</td>
+                                    <td class="py-3 px-4 text-gray-600">{{$membership->user->email}}</td>
                                     <td class="py-3 px-4 text-gray-600">15 jan 2024</td>
                                     <td class="py-3 px-4">
-                                        <span class="px-2 py-1 bg-green-100 text-green-700 rounded-full text-xs">Active</span>
+                                        <span class="px-2 py-1 bg-green-100 text-green-700 rounded-full text-xs">{{$membership->colocation->name}}</span>
                                     </td>
                                     <td class="py-3 px-4">
-                                        <span class="px-2 py-1 bg-indigo-100 text-indigo-700 rounded-full text-xs">Admin</span>
+                                        <span class="px-2 py-1 bg-indigo-100 text-indigo-700 rounded-full text-xs">{{$membership->role}}</span>
                                     </td>
                                     <td class="py-3 px-4 text-center">
                                         <button onclick="openBanModal('Jean Dupont')" class="text-red-600 hover:text-red-700 transition">
@@ -225,6 +226,7 @@
                                         </button>
                                     </td>
                                 </tr>
+                                @endforeach
                                 <tr class="border-b border-gray-100 hover:bg-gray-50">
                                     <td class="py-3 px-4">
                                         <div class="flex items-center gap-3">
