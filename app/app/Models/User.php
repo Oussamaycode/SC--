@@ -61,6 +61,6 @@ class User extends Authenticatable
     }
 
     public function expenses(){
-        return $this->belongsToMany(Expense::class,'dettes')->withPivot('amount');
+        return $this->belongsToMany(Expense::class,'dettes')->withPivot('amount','is_payed');
     }
 }

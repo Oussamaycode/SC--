@@ -74,8 +74,10 @@ class ColocationController extends Controller
             }else{
                 $dette=$expense->pivot;
                 $amount=$dette->amount;
+                if($dette->is_payed===false){
                 $expense->users()->detach($user->id);
-                $expense->users()->attach($owner->id,['amount'=>$dette->amount]);
+                $expense->users()->attach($owner->id,['amount'=>$amount]);
+                }
             }
         }
         $colocation->users()->detach($user->id);
