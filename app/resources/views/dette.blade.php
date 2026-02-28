@@ -189,7 +189,7 @@
                                 <p class="font-medium text-gray-800">{{$dette->expense->user->name}}</p>
                             </div>
                         </div>
-                        @can('mark-as-payed')
+                        @can('mark-as-payed',$dette)
                         <a href="{{route('dette.markaspayed',['id'=>$dette->id])}}" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">
                             <i class="fas fa-check mr-2"></i>Marquer payé
                         </a>

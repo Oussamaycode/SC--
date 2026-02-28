@@ -26,6 +26,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/expense',[ExpenseController::class,'store'])->name('expense.store');
     Route::get('/dette',[DetteController::class,'index'])->name('dette.index');
     Route::get('quit',[ColocationController::class,'quitColocation'])->name('colocation.quit');
+    Route::get('/admin',[AdminDashboardController::class,'index'])->name('admin.dashboard');
 });
 
 require __DIR__.'/auth.php';
