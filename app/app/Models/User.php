@@ -59,4 +59,8 @@ class User extends Authenticatable
     public function colocations(){
         return $this->belongsToMany(Colocation::class,'memberships');
     }
+
+    public function expenses(){
+        return $this->belongsToMany(Expense::class,'dettes')->withPivot('amount');
+    }
 }

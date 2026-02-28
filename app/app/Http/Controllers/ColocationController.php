@@ -73,13 +73,14 @@ class ColocationController extends Controller
                return back()->with('error', 'Owner of expense cannot quit.');
             }else{
                 $dette=$expense->pivot;
+                $amount=$dette->amount;
                 $expense->users()->detach($user->id);
-                $expense->users()->attach($user->id,['amount'=>]);
+                $expense->users()->attach($owner->id,['amount'=>$dette->amount]);
             }
         }
         $colocation->users()->detach($user->id);
-        $user->expenses()->detach();
         $user->decrement('reputation');
+        return view('colocation');
     }
 
     public function show(Colocation $colocation)

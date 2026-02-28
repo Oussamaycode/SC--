@@ -13,7 +13,7 @@ class expense extends Model
     protected $fillable=['amount','description','user_id','categorie_id','date'];
 
     public function users(){
-        return $this->belongsToMany(User::class,'dettes');
+        return $this->belongsToMany(User::class,'dettes')->withPivot('amount');
     }
 
     public function user(){
