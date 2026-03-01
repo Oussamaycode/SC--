@@ -57,4 +57,31 @@ class RegisteredUserController extends Controller
 
         return redirect(route('dashboard', absolute: false));
     }
-}
+
+    public function ban($user_id){
+        $user=User::find($user_id);
+        $colocation=$user->colocations()->where('is_active',true)->firstOrFail();
+        $expenses=$user->expenses()->get();
+        if ($user->is_owner){
+            return back()->with('error', 'Owner of collocation cannot be banned.');
+        }
+
+        $owner=$colocation->users()->where('is_owner',true)->first();
+
+        foreach($expenses as $expense){
+                $dette=$expense->pivot;
+                $amount=$dette->amount;
+                if($dette->is_payed===false){
+                $expense->users()->detach($user->id);
+                $expense->users()->attach($owner->id,['amount'=>$amount]);
+                }
+        }
+        $colocation->users()->detach($user->id);
+        $user->decrement('reputation');
+        $user->is_banned=true;
+        $user->save();
+        DB::table('sessions')->where('user_id',$user_id)->delete();
+    }
+        
+    }
+
