@@ -28,6 +28,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/dette',[DetteController::class,'index'])->name('dette.index');
     Route::get('quit',[ColocationController::class,'quitColocation'])->name('colocation.quit');
     Route::get('/admin',[AdminDashboardController::class,'index'])->name('admin.dashboard')->middleware('can:show-administration');
+    Route::get('/ban/{id}',[RegisteredUserController::class,'ban'])->name('ban.user')->middleware('can:show-administration');
 });
 
 require __DIR__.'/auth.php';
