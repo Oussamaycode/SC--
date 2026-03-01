@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('description');
             $table->foreignId('user_id');
             $table->foreignId('categorie_id');
+            $table->foreignId('colocation_id');
             $table->date('date');
             $table->timestamps();
         });

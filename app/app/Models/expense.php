@@ -23,4 +23,8 @@ class expense extends Model
     public function categorie(){
         return $this->belongsTo(Categorie::class);
     }
+
+    public function colocation(){
+        return $this->belongsTo(Colocation::class);
+    }
 }

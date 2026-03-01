@@ -227,48 +227,8 @@
                                     </td>
                                 </tr>
                                 @endforeach
-                                <tr class="border-b border-gray-100 hover:bg-gray-50">
-                                    <td class="py-3 px-4">
-                                        <div class="flex items-center gap-3">
-                                            <div class="w-8 h-8 bg-pink-500 rounded-full flex items-center justify-center text-white text-sm font-bold">ML</div>
-                                            <span class="font-medium text-gray-800">Marie Lefebvre</span>
-                                        </div>
-                                    </td>
-                                    <td class="py-3 px-4 text-gray-600">marie@email.com</td>
-                                    <td class="py-3 px-4 text-gray-600">20 jan 2024</td>
-                                    <td class="py-3 px-4">
-                                        <span class="px-2 py-1 bg-green-100 text-green-700 rounded-full text-xs">Active</span>
-                                    </td>
-                                    <td class="py-3 px-4">
-                                        <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">User</span>
-                                    </td>
-                                    <td class="py-3 px-4 text-center">
-                                        <button onclick="openBanModal('Marie Lefebvre')" class="text-red-600 hover:text-red-700 transition">
-                                            <i class="fas fa-ban"></i> Bannir
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr class="border-b border-gray-100 hover:bg-gray-50">
-                                    <td class="py-3 px-4">
-                                        <div class="flex items-center gap-3">
-                                            <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white text-sm font-bold">PD</div>
-                                            <span class="font-medium text-gray-800">Pierre Durand</span>
-                                        </div>
-                                    </td>
-                                    <td class="py-3 px-4 text-gray-600">pierre@email.com</td>
-                                    <td class="py-3 px-4 text-gray-600">5 fév 2024</td>
-                                    <td class="py-3 px-4">
-                                        <span class="px-2 py-1 bg-green-100 text-green-700 rounded-full text-xs">Active</span>
-                                    </td>
-                                    <td class="py-3 px-4">
-                                        <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">User</span>
-                                    </td>
-                                    <td class="py-3 px-4 text-center">
-                                        <button onclick="openBanModal('Pierre Durand')" class="text-red-600 hover:text-red-700 transition">
-                                            <i class="fas fa-ban"></i> Bannir
-                                        </button>
-                                    </td>
-                                </tr>
+
+
                             </tbody>
                         </table>
                     </div>
@@ -291,15 +251,23 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach($memberships as $membership)
                                 <tr class="border-b border-gray-100 hover:bg-gray-50">
-                                    <td class="py-3 px-4 font-medium text-gray-800">Appartement Paris</td>
-                                    <td class="py-3 px-4 text-gray-600">Jean Dupont</td>
-                                    <td class="py-3 px-4 text-gray-600">3</td>
-                                    <td class="py-3 px-4 text-gray-600">€1,247.50</td>
+                                    <td class="py-3 px-4 font-medium text-gray-800">{{$membership->colocation->name}}</td>
+                                    <td class="py-3 px-4 text-gray-600">{{$membership->colocation->owner->name}}</td>
+                                    <td class="py-3 px-4 text-gray-600">{{$membership->colocation->users->count()}}</td>
+                                    <td class="py-3 px-4 text-gray-600">{{$membership->colocation->expenses->sum('amount')}}</td>
                                     <td class="py-3 px-4">
-                                        <span class="px-2 py-1 bg-green-100 text-green-700 rounded-full text-xs">Active</span>
+                                        @if($membership->colocation->is_active)
+                                        <span class="px-2 py-1 bg-green-100 text-green-700 rounded-full text-xs">active</span>
+                                        @else
+                                        <span class="px-2 py-1 bg-green-100 text-green-700 rounded-full text-xs">annulé</span>
+                                        @endif
                                     </td>
+                                    
+        
                                 </tr>
+                                @endforeach
                                 <tr class="border-b border-gray-100 hover:bg-gray-50">
                                     <td class="py-3 px-4 font-medium text-gray-800">Maison Lyon</td>
                                     <td class="py-3 px-4 text-gray-600">Sophie Martin</td>

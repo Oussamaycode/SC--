@@ -12,7 +12,7 @@ use App\Models\Membership;
 class AdminDashboardController extends Controller
 {
     public function index(){
-        $memberships=Membership::all();
+        $memberships=Membership::with(['colcoation','colocation.users','colocation.expenses','colocation.owner']);
         $userCount=User::count();
         $bannedUsersCount=User::where('is_banned',true)->count();
         $expenseSum=Expense::sum('amount');
